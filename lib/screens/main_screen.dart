@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soaring_bird/components/mamaBird_button.dart';
+import 'package:soaring_bird/components/bird_button.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -19,6 +20,7 @@ class MainScreen extends StatelessWidget {
               mamaBirdTitle: 'Jumps over the lazy dog',
               titleColor: Colors.indigo[700],
             ),
+            BirdButton()
           ]),
     );
   }
