@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soaring_bird/components/mamaBird_button.dart';
 import 'package:soaring_bird/components/bird_button.dart';
 
 class MainScreen extends StatelessWidget {
@@ -12,15 +11,18 @@ class MainScreen extends StatelessWidget {
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            MamaBirdButton(
-              mamaBirdTitle: 'The quick brown fox jumps',
+            Padding(
+              padding: EdgeInsets.only(top: 5, bottom: 5),
+              child: BirdButton(
+                birdTitle: 'The quick brown fox jumps',
+                titleColor: Colors.indigo[700],
+                pageTravel: '/second',
+              ),
+            ),
+            BirdButton(
+              birdTitle: 'Jumps over the lazy dog',
               titleColor: Colors.indigo[700],
             ),
-            MamaBirdButton(
-              mamaBirdTitle: 'Jumps over the lazy dog',
-              titleColor: Colors.indigo[700],
-            ),
-            BirdButton()
           ]),
     );
   }
