@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soaring_bird/data/data_architecture.dart';
 import 'package:soaring_bird/data/data_source.dart';
+import 'package:substring_highlight/substring_highlight.dart';
 
 class BirdFinder extends SearchDelegate {
   @override
@@ -48,13 +49,6 @@ class BirdFinder extends SearchDelegate {
 
     return WordSuggestionList(
         query: this.query, suggestions: suggestion.toList());
-    // ListView(
-    //   children: suggestions
-    //       .map<ListTile>((a) => ListTile(
-    //             title: Text(a.birdSpeech),
-    //           ))
-    //       .toList(),
-    // );
   }
 }
 
@@ -71,22 +65,16 @@ class WordSuggestionList extends StatelessWidget {
       itemCount: suggestions.length,
       itemBuilder: (BuildContext context, int i) {
         final DataArchitecture suggestion = suggestions[i];
-        return ListTile(
-          leading: query.isEmpty ? Icon(Icons.history) : Icon(null),
-          // Highlight the substring that matched the query.
-          title: RichText(
-            text: TextSpan(
-              text: suggestion.birdSpeech.substring(0, query.length),
-              style: textTheme.copyWith(fontWeight: FontWeight.bold),
-              children: <TextSpan>[
-                TextSpan(
-                  text: suggestion.birdSpeech.substring(query.length),
-                  style: textTheme,
-                ),
-              ],
-            ),
+        return Card(
+            child: Padding(
+          padding: EdgeInsets.all(10),
+          child: SubstringHighlight(
+            text: suggestion.birdSpeech,
+            term: query,
+            textStyle: textTheme,
+            textStyleHighlight: textTheme.copyWith(fontWeight: FontWeight.bold),
           ),
-        );
+        ));
       },
     );
   }
