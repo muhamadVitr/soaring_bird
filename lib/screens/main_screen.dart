@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:soaring_bird/components/bird_button.dart';
+import 'package:soaring_bird/screens/search_screen.dart';
 
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: BirdFinder());
+            },
+          )
+        ],
         title: Text('test'),
       ),
       body: Column(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soaring_bird/screens/birds_screen.dart';
+import 'package:soaring_bird/screens/search_screen.dart';
 import 'screens/main_screen.dart';
 
 void main() => runApp(SoaringBird());

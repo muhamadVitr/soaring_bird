@@ -9,6 +9,7 @@ class BirdsScreen extends StatelessWidget {
       title: title,
       home: Scaffold(
         appBar: AppBar(
+          leading: Icon(Icons.arrow_back),
           title: Text(title),
         ),
         body: BirdContainer(),

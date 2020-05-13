@@ -1,35 +1,52 @@
 import 'package:flutter/material.dart';
 
-class SearchScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder();
-  }
-}
-
 class BirdFinder extends SearchDelegate {
   @override
   List<Widget> buildActions(BuildContext context) {
-    // TODO: implement buildActions
-    throw UnimplementedError();
+    return [
+      IconButton(
+        icon: query.isEmpty ? Icon(null) : Icon(Icons.close),
+        onPressed: query.isEmpty
+            ? () {
+                //not yet implemented
+              }
+            : () {
+                query = '';
+              },
+      )
+    ];
   }
 
   @override
   Widget buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
-    throw UnimplementedError();
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
+    return ListView(
+      children: <Widget>[
+        ListTile(
+          title: Text('test'),
+        ),
+      ],
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    throw UnimplementedError();
+    return ListView(
+      children: <Widget>[
+        ListTile(
+          title: Text(query),
+        )
+      ],
+    );
   }
 }
 
