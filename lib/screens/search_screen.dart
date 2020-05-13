@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:soaring_bird/data/data_architecture.dart';
+import 'package:soaring_bird/data/data_source.dart';
 
 class BirdFinder extends SearchDelegate {
   @override
@@ -40,38 +42,46 @@ class BirdFinder extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        ListTile(
-          title: Text(query),
-        )
-      ],
-    );
+    final BirdsData searchResults = BirdsData();
+    final Iterable<DataArchitecture> suggestion = searchResults.birdsData
+        .where((a) => a.birdSpeech.toLowerCase().contains(query));
+
+    return WordSuggestionList(
+        query: this.query, suggestions: suggestion.toList());
+    // ListView(
+    //   children: suggestions
+    //       .map<ListTile>((a) => ListTile(
+    //             title: Text(a.birdSpeech),
+    //           ))
+    //       .toList(),
+    // );
   }
 }
 
 class WordSuggestionList extends StatelessWidget {
   const WordSuggestionList({this.suggestions, this.query});
 
-  final List<String> suggestions;
+  final List<DataArchitecture> suggestions;
   final String query;
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme.subtitle1;
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (BuildContext context, int i) {
-        final String suggestion = suggestions[i];
+        final DataArchitecture suggestion = suggestions[i];
         return ListTile(
           leading: query.isEmpty ? Icon(Icons.history) : Icon(null),
+          // Highlight the substring that matched the query.
           title: RichText(
             text: TextSpan(
-              text: suggestion.substring(0, query.length),
-              style: TextStyle(color: Colors.black),
+              text: suggestion.birdSpeech.substring(0, query.length),
+              style: textTheme.copyWith(fontWeight: FontWeight.bold),
               children: <TextSpan>[
                 TextSpan(
-                  text: suggestion.substring(query.length),
-                  style: TextStyle(color: Colors.orange),
+                  text: suggestion.birdSpeech.substring(query.length),
+                  style: textTheme,
                 ),
               ],
             ),
