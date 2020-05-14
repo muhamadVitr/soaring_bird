@@ -10,6 +10,9 @@ class SoaringBird extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: MaterialApp(
+        theme: ThemeData(
+            backgroundColor: Colors.white,
+            appBarTheme: AppBarTheme(elevation: 0.0)),
         initialRoute: '/',
         routes: {
           '/': (context) => MainScreen(),

@@ -8,7 +8,12 @@ class BirdFinder extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: query.isEmpty ? Icon(null) : Icon(Icons.close),
+        icon: query.isEmpty
+            ? Icon(null)
+            : Icon(
+                Icons.close,
+                color: Colors.grey,
+              ),
         onPressed: query.isEmpty
             ? () {
                 //not yet implemented
@@ -21,9 +26,22 @@ class BirdFinder extends SearchDelegate {
   }
 
   @override
+  ThemeData appBarTheme(BuildContext context) {
+    assert(context != null);
+    final ThemeData theme = Theme.of(context);
+    assert(theme != null);
+    return theme.copyWith(
+      primaryColor: Colors.grey[50],
+    );
+  }
+
+  @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: Icon(
+        Icons.arrow_back,
+        color: Colors.grey,
+      ),
       onPressed: () {
         close(context, null);
       },
@@ -65,15 +83,24 @@ class BirdFindingsResults extends StatelessWidget {
       itemCount: suggestions.length,
       itemBuilder: (context, index) {
         final DataArchitecture suggestion = suggestions[index];
-        return Card(
-            child: ListTile(
-          title: SubstringHighlight(
-            text: suggestion.birdSpeech,
-            term: query,
-            textStyle: textTheme,
-            textStyleHighlight: textTheme.copyWith(fontWeight: FontWeight.bold),
-          ),
-        ));
+        return Column(
+          children: <Widget>[
+            ListTile(
+              title: SubstringHighlight(
+                text: suggestion.birdSpeech,
+                term: query,
+                textStyle: textTheme,
+                textStyleHighlight:
+                    textTheme.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
+            Divider(
+              indent: 45,
+              endIndent: 45,
+              color: Colors.black,
+            )
+          ],
+        );
       },
     );
   }

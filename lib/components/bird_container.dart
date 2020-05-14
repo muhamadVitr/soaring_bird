@@ -10,7 +10,7 @@ class BirdContainer extends StatelessWidget {
     return ListView.builder(
       itemCount: birds.birdsData.length,
       itemBuilder: (context, index) {
-        return Card(
+        return Container(
           child: ListTile(
             title: Text(
               birds.birdsData[index].birdSpeech,

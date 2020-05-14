@@ -16,14 +16,28 @@ class BirdButton extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, pageTravel);
       },
-      child: Card(
-        color: Colors.blue,
+      child: Container(
+        color: Colors.white,
         child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
-            child: Text(
-              birdTitle,
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            )),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+          child: Column(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  birdTitle,
+                  style: TextStyle(color: Colors.black54, fontSize: 18),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Divider(
+                color: Colors.black87,
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
