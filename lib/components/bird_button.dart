@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 class BirdButton extends StatelessWidget {
-  BirdButton({this.birdTitle, this.titleColor, this.pageTravel});
+  BirdButton(
+      {@required this.birdTitle,
+      // @required this.titleColor,
+      @required this.pageTravel});
 
   final String birdTitle;
-  final Color titleColor;
+  // final Color titleColor;
   final String pageTravel;
 
   @override
@@ -13,17 +16,14 @@ class BirdButton extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, pageTravel);
       },
-      child: Container(
-        padding: EdgeInsets.all(15),
-        color: titleColor, //editable
-        child: Text(
-          birdTitle, //editable
-          style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
-              fontStyle: FontStyle.italic,
-              fontSize: 20),
-        ),
+      child: Card(
+        color: Colors.blue,
+        child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+            child: Text(
+              birdTitle,
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            )),
       ),
     );
   }
