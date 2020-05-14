@@ -17,22 +17,47 @@ class MainScreen extends StatelessWidget {
         ],
         title: Text('test'),
       ),
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: ListView(
+        children: <Widget>[
+          SizedBox(
+            height: 2.5,
+          ),
+          BirdButton(
+            birdTitle: 'Topological Sorting',
+            pageTravel: '/second',
+          ),
+          BirdButton(birdTitle: 'Dijkstra\'algorithm', pageTravel: null),
+          BirdButton(birdTitle: 'Flood fill Algorithm', pageTravel: null),
+          BirdButton(birdTitle: 'Floyd’s Cycle Detection', pageTravel: null),
+          BirdButton(birdTitle: 'Lee algorithm', pageTravel: null),
+          BirdButton(birdTitle: 'Binary Search', pageTravel: null),
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 5, bottom: 5),
-              child: BirdButton(
-                birdTitle: 'The quick brown fox jumps',
-                titleColor: Colors.indigo[700],
-                pageTravel: '/second',
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
               ),
             ),
-            BirdButton(
-              birdTitle: 'Jumps over the lazy dog',
-              titleColor: Colors.indigo[700],
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
-          ]),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

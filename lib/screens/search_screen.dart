@@ -47,28 +47,27 @@ class BirdFinder extends SearchDelegate {
     final Iterable<DataArchitecture> suggestion = searchResults.birdsData
         .where((a) => a.birdSpeech.toLowerCase().contains(query));
 
-    return WordSuggestionList(
+    return BirdFindingsResults(
         query: this.query, suggestions: suggestion.toList());
   }
 }
 
-class WordSuggestionList extends StatelessWidget {
-  const WordSuggestionList({this.suggestions, this.query});
+class BirdFindingsResults extends StatelessWidget {
+  const BirdFindingsResults({this.suggestions, this.query});
 
   final List<DataArchitecture> suggestions;
   final String query;
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme.subtitle1;
+    final textTheme = Theme.of(context).textTheme.bodyText2;
     return ListView.builder(
       itemCount: suggestions.length,
-      itemBuilder: (BuildContext context, int i) {
-        final DataArchitecture suggestion = suggestions[i];
+      itemBuilder: (context, index) {
+        final DataArchitecture suggestion = suggestions[index];
         return Card(
-            child: Padding(
-          padding: EdgeInsets.all(10),
-          child: SubstringHighlight(
+            child: ListTile(
+          title: SubstringHighlight(
             text: suggestion.birdSpeech,
             term: query,
             textStyle: textTheme,

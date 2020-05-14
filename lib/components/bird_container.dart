@@ -6,12 +6,16 @@ class BirdContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme.bodyText2;
     return ListView.builder(
       itemCount: birds.birdsData.length,
       itemBuilder: (context, index) {
         return Card(
           child: ListTile(
-            title: Text(birds.birdsData[index].birdSpeech),
+            title: Text(
+              birds.birdsData[index].birdSpeech,
+              style: textTheme,
+            ),
           ),
         );
       },
