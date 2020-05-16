@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:soaring_bird/data/data_source.dart';
 import 'package:soaring_bird/screens/search_screen.dart';
+import 'package:soaring_bird/style/styles.dart';
 
 class BirdsScreen extends StatelessWidget {
   final BirdsData birds = BirdsData();
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme.bodyText2;
     final title = 'Long List';
     return MaterialApp(
       title: title,
@@ -15,25 +15,39 @@ class BirdsScreen extends StatelessWidget {
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
+              backgroundColor: Colors.white,
+              leading: IconButton(
+                  icon: kIconBackLight,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
               actions: <Widget>[
                 IconButton(
-                    icon: Icon(Icons.search),
+                    icon: kIconSearchLight,
                     onPressed: () {
                       showSearch(context: context, delegate: BirdFinder());
                     })
               ],
-              title: Text(title),
+              title: Text(
+                title,
+                style: TextStyle(color: Colors.grey),
+              ),
               floating: true,
             ),
             SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
-                return Card(
-                  child: ListTile(
-                    title: Text(
-                      birds.birdsData[index].birdSpeech,
-                      style: textTheme,
+                return Column(
+                  children: <Widget>[
+                    Container(
+                      child: ListTile(
+                        title: Text(
+                          birds.birdsData[index].birdSpeech,
+                          style: kSearchResults,
+                        ),
+                      ),
                     ),
-                  ),
+                    Divider(indent: 15, endIndent: 15)
+                  ],
                 );
               }, childCount: birds.birdsData.length),
             ),

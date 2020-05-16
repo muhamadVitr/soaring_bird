@@ -16,7 +16,7 @@ class BirdButton extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, pageTravel);
       },
-      child: Card(
+      child: Container(
         color: Colors.blue,
         child: Padding(
             padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),

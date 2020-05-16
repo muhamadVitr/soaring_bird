@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soaring_bird/data/data_architecture.dart';
 import 'package:soaring_bird/data/data_source.dart';
+import 'package:soaring_bird/style/styles.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
 class BirdFinder extends SearchDelegate {
@@ -8,7 +9,7 @@ class BirdFinder extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: query.isEmpty ? Icon(null) : Icon(Icons.close),
+        icon: query.isEmpty ? Icon(null) : kIconCloseLight,
         onPressed: query.isEmpty
             ? () {
                 //not yet implemented
@@ -21,9 +22,19 @@ class BirdFinder extends SearchDelegate {
   }
 
   @override
+  ThemeData appBarTheme(BuildContext context) {
+    assert(context != null);
+    final ThemeData theme = Theme.of(context);
+    assert(theme != null);
+    return theme.copyWith(
+      primaryColor: Colors.grey[50],
+    );
+  }
+
+  @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: kIconBackLight,
       onPressed: () {
         close(context, null);
       },
@@ -60,21 +71,39 @@ class BirdFindingsResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme.bodyText2;
-    return ListView.builder(
-      itemCount: suggestions.length,
-      itemBuilder: (context, index) {
-        final DataArchitecture suggestion = suggestions[index];
-        return Card(
-            child: ListTile(
-          title: SubstringHighlight(
-            text: suggestion.birdSpeech,
-            term: query,
-            textStyle: textTheme,
-            textStyleHighlight: textTheme.copyWith(fontWeight: FontWeight.bold),
-          ),
-        ));
-      },
+    final BirdsData birds = BirdsData();
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
+            final DataArchitecture suggestion = suggestions[index];
+            return GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onPanDown: (_) {
+                FocusScope.of(context).requestFocus(FocusNode());
+              },
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: ListTile(
+                      title: SubstringHighlight(
+                        text: suggestion.birdSpeech,
+                        term: query,
+                        textStyle: kSearchResults,
+                        textStyleHighlight: kSearchHighlight,
+                      ),
+                    ),
+                  ),
+                  Divider(
+                    indent: 15,
+                    endIndent: 15,
+                  )
+                ],
+              ),
+            );
+          }, childCount: suggestions.length),
+        ),
+      ],
     );
   }
 }
