@@ -5,6 +5,12 @@ import 'package:soaring_bird/style/styles.dart';
 import 'package:substring_highlight/substring_highlight.dart';
 
 class BirdFinder extends SearchDelegate {
+  List<DataArchitecture> _history = [
+    DataArchitecture(birdSpeech: 'hawk'),
+    DataArchitecture(birdSpeech: 'eagle'),
+    DataArchitecture(birdSpeech: 'pigeon')
+  ];
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -55,11 +61,16 @@ class BirdFinder extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     final BirdsData searchResults = BirdsData();
-    final Iterable<DataArchitecture> suggestion = searchResults.birdsData
-        .where((a) => a.birdSpeech.toLowerCase().contains(query));
+    final Iterable<DataArchitecture> suggestions = this.query.isEmpty
+        ? _history
+        : searchResults.birdsData
+            .where((a) => a.birdSpeech.toLowerCase().contains(query));
+
+    // final Iterable<DataArchitecture> suggestion = searchResults.birdsData
+    //     .where((a) => a.birdSpeech.toLowerCase().contains(query));
 
     return BirdFindingsResults(
-        query: this.query, suggestions: suggestion.toList());
+        query: this.query, suggestions: suggestions.toList());
   }
 }
 
@@ -71,7 +82,6 @@ class BirdFindingsResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BirdsData birds = BirdsData();
     return CustomScrollView(
       slivers: <Widget>[
         SliverList(
@@ -86,6 +96,7 @@ class BirdFindingsResults extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     child: ListTile(
+                      leading: query.isEmpty ? Icon(Icons.history) : null,
                       title: SubstringHighlight(
                         text: suggestion.birdSpeech,
                         term: query,

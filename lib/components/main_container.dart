@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BirdButton extends StatelessWidget {
-  BirdButton(
+class MainContainer extends StatelessWidget {
+  MainContainer(
       {@required this.birdTitle,
       // @required this.titleColor,
       @required this.pageTravel});
@@ -17,13 +17,24 @@ class BirdButton extends StatelessWidget {
         Navigator.pushNamed(context, pageTravel);
       },
       child: Container(
-        color: Colors.blue,
-        child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
-            child: Text(
-              birdTitle,
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            )),
+        color: Colors.white,
+        child: Column(
+          children: <Widget>[
+            Padding(
+                padding: EdgeInsets.symmetric(vertical: 25, horizontal: 35),
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    birdTitle,
+                    style: TextStyle(color: Colors.grey, fontSize: 18),
+                  ),
+                )),
+            Divider(
+              indent: 45,
+              endIndent: 45,
+            )
+          ],
+        ),
       ),
     );
   }

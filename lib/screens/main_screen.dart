@@ -1,37 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:soaring_bird/components/bird_button.dart';
+import 'package:soaring_bird/components/main_container.dart';
 import 'package:soaring_bird/screens/search_screen.dart';
+import 'package:soaring_bird/style/styles.dart';
 
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: BirdFinder());
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(170.0),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: Icon(
+                  Icons.dehaze,
+                  color: Colors.grey,
+                ),
+                onPressed: () {
+                  build(context);
+                  Scaffold.of(context).openDrawer();
+                },
+              );
             },
-          )
-        ],
-        title: Text('test'),
-      ),
-      body: ListView(
-        children: <Widget>[
-          SizedBox(
-            height: 2.5,
           ),
-          BirdButton(
-            birdTitle: 'Topological Sorting',
-            pageTravel: '/second',
+          actions: <Widget>[
+            IconButton(
+              icon: kIconSearchLight,
+              onPressed: () {
+                showSearch(context: context, delegate: BirdFinder());
+              },
+            )
+          ],
+          title: Text(
+            'test',
+            style: TextStyle(color: Colors.grey),
           ),
-          BirdButton(birdTitle: 'Dijkstra\'algorithm', pageTravel: null),
-          BirdButton(birdTitle: 'Flood fill Algorithm', pageTravel: null),
-          BirdButton(birdTitle: 'Floyd’s Cycle Detection', pageTravel: null),
-          BirdButton(birdTitle: 'Lee algorithm', pageTravel: null),
-          BirdButton(birdTitle: 'Binary Search', pageTravel: null),
-        ],
+        ),
       ),
       drawer: Drawer(
         child: ListView(
@@ -57,6 +63,22 @@ class MainScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          SizedBox(
+            height: 2.5,
+          ),
+          MainContainer(
+            birdTitle: 'Topological Sorting',
+            pageTravel: '/second',
+          ),
+          MainContainer(birdTitle: 'Dijkstra\'algorithm', pageTravel: null),
+          MainContainer(birdTitle: 'Flood fill Algorithm', pageTravel: null),
+          MainContainer(birdTitle: 'Floyd’s Cycle Detection', pageTravel: null),
+          MainContainer(birdTitle: 'Lee algorithm', pageTravel: null),
+          MainContainer(birdTitle: 'Binary Search', pageTravel: null),
+        ],
       ),
     );
   }
