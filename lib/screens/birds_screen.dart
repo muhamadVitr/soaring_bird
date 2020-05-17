@@ -12,6 +12,7 @@ class BirdsScreen extends StatelessWidget {
     return MaterialApp(
       title: title,
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
@@ -40,13 +41,17 @@ class BirdsScreen extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       child: ListTile(
-                        title: Text(
+                        title: SelectableText(
                           birds.birdsData[index].birdSpeech,
-                          style: kSearchResults,
+                          style: kMainText,
                         ),
                       ),
                     ),
-                    Divider(indent: 15, endIndent: 15)
+                    Divider(
+                      indent: 30,
+                      endIndent: 30,
+                      color: Colors.black26,
+                    )
                   ],
                 );
               }, childCount: birds.birdsData.length),

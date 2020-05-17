@@ -6,7 +6,9 @@ import 'package:substring_highlight/substring_highlight.dart';
 
 class BirdFinder extends SearchDelegate {
   List<DataArchitecture> _history = [
-    DataArchitecture(birdSpeech: 'hawk'),
+    DataArchitecture(
+      birdSpeech: 'hawk',
+    ),
     DataArchitecture(birdSpeech: 'eagle'),
     DataArchitecture(birdSpeech: 'pigeon')
   ];
@@ -66,9 +68,6 @@ class BirdFinder extends SearchDelegate {
         : searchResults.birdsData
             .where((a) => a.birdSpeech.toLowerCase().contains(query));
 
-    // final Iterable<DataArchitecture> suggestion = searchResults.birdsData
-    //     .where((a) => a.birdSpeech.toLowerCase().contains(query));
-
     return BirdFindingsResults(
         query: this.query, suggestions: suggestions.toList());
   }
@@ -97,17 +96,21 @@ class BirdFindingsResults extends StatelessWidget {
                   Container(
                     child: ListTile(
                       leading: query.isEmpty ? Icon(Icons.history) : null,
-                      title: SubstringHighlight(
-                        text: suggestion.birdSpeech,
-                        term: query,
-                        textStyle: kSearchResults,
-                        textStyleHighlight: kSearchHighlight,
-                      ),
+                      title: query.isEmpty
+                          ? Text(suggestion.birdSpeech, style: kMainText)
+                          : SubstringHighlight(
+                              text: suggestion.birdSpeech,
+                              term: query,
+                              textStyle: kSearchResults,
+                              textStyleHighlight: kSearchHighlight,
+                            ),
+                      onTap: () => context,
                     ),
                   ),
                   Divider(
-                    indent: 15,
-                    endIndent: 15,
+                    indent: 30,
+                    endIndent: 30,
+                    color: Colors.black26,
                   )
                 ],
               ),

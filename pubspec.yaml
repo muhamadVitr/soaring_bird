@@ -66,6 +66,12 @@ flutter:
         - asset: lib/assets/Amiri-Regular.ttf
         - asset: lib/assets/Amiri-Italic.ttf
           style: italic
+
+    - family: EBGaramond
+      fonts:
+        - asset: lib/assets/EBGaramond-Italic-VariableFont_wght.ttf
+        - asset: lib/assets/EBGaramond-VariableFont_wght.ttf
+          style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
