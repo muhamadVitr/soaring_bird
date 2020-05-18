@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soaring_bird/screens/birds_nest.dart/nest_01.dart';
 import 'package:soaring_bird/screens/birds_screen.dart';
 import 'screens/main_screen.dart';
 
@@ -15,7 +16,8 @@ class SoaringBird extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => MainScreen(),
-          '/second': (context) => BirdsScreen(),
+          '/second': (context) => BirdsNest1st(),
+          '/third': (context) => BirdsScreen(),
         },
       ),
     );

@@ -61,12 +61,6 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Amiri
-      fonts:
-        - asset: lib/assets/Amiri-Regular.ttf
-        - asset: lib/assets/Amiri-Italic.ttf
-          style: italic
-
     - family: EBGaramond
       fonts:
         - asset: lib/assets/EBGaramond-Italic-VariableFont_wght.ttf
