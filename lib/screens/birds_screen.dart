@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soaring_bird/data/data_source/data_source_01.dart';
-import 'package:soaring_bird/screens/search_screen.dart';
+import 'package:soaring_bird/screens/search_delegate.dart';
 import 'package:soaring_bird/style/styles.dart';
 
 class BirdsScreen extends StatelessWidget {

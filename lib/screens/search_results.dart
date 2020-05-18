@@ -57,11 +57,20 @@ class _BirdFindingsResultsState extends State<BirdFindingsResults> {
                             onTap: () =>
                                 Navigator.pushNamed(context, '/second'),
                           ),
-                          Align(
-                              widthFactor: 8,
-                              alignment: Alignment.bottomRight,
-                              child: IconButton(
-                                  icon: Icon(Icons.favorite), onPressed: null)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Transform.rotate(
+                                angle: 180 * 3.1415 / 180,
+                                child: IconButton(
+                                    icon: kIconHierarchy,
+                                    color: Colors.black54,
+                                    onPressed: null),
+                              ),
+                              IconButton(
+                                  icon: Icon(Icons.favorite), onPressed: null),
+                            ],
+                          ),
                           Divider(
                             indent: 30,
                             endIndent: 30,

@@ -2,7 +2,7 @@ import 'package:soaring_bird/data/data_architecture.dart';
 
 class BirdsData2nd {
   static String chapter = 'The Friday Prayer Time';
-  static String destination = '/second';
+  static String destination = '/third';
 
   List<DataArchitecture> birdsData = [
     DataArchitecture(

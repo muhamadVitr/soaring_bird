@@ -2,7 +2,7 @@ import 'package:soaring_bird/data/data_architecture.dart';
 
 class BirdsData1st {
   static String chapter = 'Times of Prayer';
-  static String destination = '/first';
+  static String destination = '/third';
 
   List<DataArchitecture> birdsData = [
     DataArchitecture(
@@ -53,7 +53,5 @@ class BirdsData1st {
         birdID: "Muwatta Malik 0012",
         birdSpeech:
             '(12) 12- Malik narrated from Rabi\'a Abu \'Abdur-Rahman, on the authority of Al-Qasim bin Muhammad that he said: I never observed the people except when they perform the Dhuhr prayer when it is cool.'),
-    DataArchitecture(birdSpeech: ''),
-    // DataArchitecture(birdSpeech: ''),
   ];
 }

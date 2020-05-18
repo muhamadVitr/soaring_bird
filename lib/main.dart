@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soaring_bird/screens/birds_nest.dart/nest_01.dart';
+import 'package:soaring_bird/screens/nest_screen.dart';
 import 'package:soaring_bird/screens/birds_screen.dart';
 import 'screens/main_screen.dart';
 
